@@ -1,0 +1,49 @@
+
+
+Frontend Process (React)
+  
+    1. Advance Login/Signup system to ditech Admin automaticly.
+    2. Admin can create Folder, and uploade Pics.
+    3. Use a file input or drag-and-drop library (like react-dropzone) to allow users to upload an image.
+    4. Build a clean UI to display and interact with the folder structure.
+    5. Use libraries like Material-UI or Ant Design for a professional look.
+
+Backend Process
+
+    1.Receive Uploaded Image:
+    Accept the uploaded image via a POST request.
+    Save it temporarily in memory or disk for processing.
+
+    2.Enhance the Image:
+
+    Use an enhancement model like Real-ESRGAN or a third-party API to process the image.
+    Convert the enhanced image into a format suitable for saving (e.g., Base64 or binary).
+
+    3.Save to Database:
+
+    Choose a database to store the image:
+    MongoDB: Store as Base64 or use GridFS for large files.
+
+    3.Return Response:
+
+    Send a success response to the frontend.
+
+Database Considerations
+
+    1. Database Type:
+
+    Use MongoDB for easier handling of binary or Base64 data.
+    Use SQL databases for structured data and scalable solutions.
+
+    2.Schema Design:
+
+     two Table:- 
+     1. Folders{
+        "Folder_name" : String,
+        "type" : String , Unique
+     }
+    2. Imgs{
+        "Img_name" : Buffer,
+        "type" : String
+    }
+
