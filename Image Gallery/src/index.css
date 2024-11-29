@@ -1,7 +1,117 @@
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css');
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css');
 
+*{
+  margin: 0;
+  padding: 0;
+}
+
 body{
-  background-color: black;
+  background-color: rgb(24 24 27);
   color: white;
 }
+
+/*  Header */
+
+.header{
+  max-width: 1536px; 
+  width: 95%; 
+  margin: 0 auto; 
+  padding-left: 16px; 
+  padding-right: 16px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  height: 70px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.274),rgba(255, 255, 255, 0.01),rgba(0, 0, 0, 0.274));
+}
+
+.header .logo{
+  max-width: 45px;
+}
+
+/* Navber */
+
+.navber{
+  max-width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  box-shadow: 0px 0px 10px 1px rgb(255, 93, 120);
+  height: 30px;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  transform: scale(0.9);
+  isolation: isolate;
+  gap: 10px;
+  transition: opacity 0.3s, transform 0.3s, filter 0.3s;
+  backdrop-filter: blur(2xl);
+}
+
+.nav-link {
+  display: grid;
+  align-items: center; 
+  height: 2.15rem; 
+  padding: 0 0.2rem;
+  font-size: 1.2rem; 
+  font-weight: 800; 
+  letter-spacing: 0.005em; 
+  color: rgba(250, 250, 250, 0.5); 
+  text-decoration: none;
+}
+
+.nav-link.active{
+  text-decoration: underline;
+  color: rgb(255, 93, 120);
+  text-shadow: 0px 0px 1px  white;
+  transition: color 0.5s ease-in, text-shadow 0.5s ease-in;
+}
+
+/* Social links */
+
+.contact{
+  /* border: 1px solid ; */
+  min-width:80px;
+  max-width: 100px;
+  display: flex;
+  gap: 0.5em;
+  justify-content: space-evenly;
+  height: 30px;
+}
+
+.social-link{
+  font-size: 1.75em;
+  text-decoration: none;
+  color: white;
+}
+
+.social-link:hover{
+  color: rgb(255, 93, 120);
+}
+
+
+
+
+
+
+
+
+/* Mid screen */
+
+@media (min-width: 768px) { 
+  .header {
+      padding-left: 24px; 
+      padding-right: 24px; 
+      display: grid; 
+      grid-template-columns: 1fr 3fr 1fr;
+  }
+
+  .contact{
+    max-width: 100%;
+    justify-content: end;
+    gap:1em;
+  }
+  
+}
+
+

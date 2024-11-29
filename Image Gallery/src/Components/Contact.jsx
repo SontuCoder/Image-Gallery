@@ -25,7 +25,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="social-link"
                 >
-                    <i className={iconClass} style={{ color: "white" }}></i>
+                    <i className={iconClass}></i>
                 </a>
             ))}
         </nav>

@@ -6,7 +6,7 @@ import Logo from "../assets/logo.svg";
 const Header = () => {
     return (
         <header className='header'>
-            <div className="">
+            <div className="logo">
                 <img src={Logo} alt="logo" />
             </div>
             <Navber/>
