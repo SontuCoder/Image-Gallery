@@ -1,4 +1,5 @@
-import Header from "./Components/Header"
+import Header from "./Components/Header";
+import Home from "./Pages/Home";
 
 
 
@@ -6,7 +7,9 @@ function App() {
   return (
     <>
       <Header/>
-      <p className="hi">Sontu</p>
+      <main>
+        <Home/>
+      </main>
     </>
   )
 }

@@ -1,5 +1,6 @@
 {
   "name": "image-gallery",
+  "type": "module",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000I\u0000m\u0000a\u0000g\u0000e\u0000-\u0000G\u0000a\u0000l\u0000l\u0000e\u0000r\u0000y\u0000\r\u0000 \u0000",
   "main": "app.js",
@@ -10,6 +11,11 @@
   "author": "Sontu",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.7"
   }
 }

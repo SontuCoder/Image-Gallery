@@ -11,6 +11,23 @@ body{
   color: white;
 }
 
+/* Typography */
+
+.heading-1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: clamp(40px, 8vw, 100px);
+  text-shadow: 0px 0px 20px rgb(255, 93, 120);
+  margin-bottom: 10px;
+}
+
+.pera{
+  font-size: clamp(15px, 4vw, 20px);
+  text-wrap: wrap;
+}
+
+
+
+
 /*  Header */
 
 .header{
@@ -24,6 +41,8 @@ body{
   align-items: center;
   height: 70px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.274),rgba(255, 255, 255, 0.01),rgba(0, 0, 0, 0.274));
+  position: fixed;
+  z-index: 100;
 }
 
 .header .logo{
@@ -90,13 +109,46 @@ body{
 }
 
 
+/* Body */
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container{
+  justify-self: center;
+  min-width: 100%;
+}
+
+.home-div{
+  background-image: url(./assets//Dark-wallpaper-HD-souls.jpg);
+  min-height: 50vh;
+  min-width: 100vw;
+  background-size: cover;
+  background-position:80% 0%;
+  padding-top: 100px;
+  padding-left: 30px;
+}
+
+
+.text-section{
+  padding-left: 20px;
+}
+
+.home-pera{
+  width: clamp(100px, 38vw, 300px);
+}
 
 
 
 
 
 
-/* Mid screen */
+
+
+/* Mid-Large screen */
 
 @media (min-width: 768px) { 
   .header {
@@ -111,6 +163,13 @@ body{
     justify-content: end;
     gap:1em;
   }
+  .container{
+    min-width: 80vw;
+  }
+  .home-div{
+    min-height: 100vh;
+  }
+  
   
 }
 
