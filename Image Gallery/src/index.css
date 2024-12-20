@@ -9,6 +9,7 @@
 body{
   background-color: rgb(24 24 27);
   color: white;
+  touch-action: pan-y;
 }
 
 /* Typography */
@@ -20,13 +21,46 @@ body{
   margin-bottom: 10px;
 }
 
+.heading-2{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: clamp(10px, 6vw, 50px);
+  text-shadow: 0px 0px 20px rgb(255, 93, 120);
+  margin-bottom: 10px;
+}
+
 .pera{
   font-size: clamp(15px, 4vw, 20px);
   text-wrap: wrap;
 }
 
+a{
+  color: rgba(250, 250, 250, 0.5);;
+  text-decoration: none;
+}
+
+/* Buttons */
+
+.button{
+  box-shadow: 0px 0px 10px rgb(255, 93, 120);
+  width: 170px;
+  font-weight: 700;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
 
 
+.button2 a i{
+  font-size: clamp(25px,6vw,40px);
+  color: white;
+}
+
+.button2 a i:hover{
+  color: rgb(255, 93, 120);
+}
 
 /*  Header */
 
@@ -40,7 +74,7 @@ body{
   justify-content: space-between; 
   align-items: center;
   height: 70px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.274),rgba(255, 255, 255, 0.01),rgba(0, 0, 0, 0.274));
+  background: black;
   position: fixed;
   z-index: 100;
 }
@@ -86,6 +120,8 @@ body{
   transition: color 0.5s ease-in, text-shadow 0.5s ease-in;
 }
 
+
+
 /* Social links */
 
 .contact{
@@ -117,6 +153,9 @@ main{
   align-items: center;
 }
 
+/* ======================= Home ============================ */
+
+
 .container{
   justify-self: center;
   min-width: 100%;
@@ -142,8 +181,130 @@ main{
 }
 
 
+/* ======================= Collection ============================ */
+
+.collection{
+  min-width: 100vw;
+  padding-top: 30px;
+}
+
+#collection-header{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 30px 0px 20px;
+}
+
+.img-cards{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  padding: 20px;
+}
 
 
+.cards{
+  box-shadow: 0px 0px 10px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+.inner-card{
+  display: flex;
+  align-items: center;
+}
+
+.inner-card img{
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.cards i{
+  font-size: 20px;
+  color: red;
+}
+
+.cards i:hover{
+  color: rgb(255, 93, 120);
+}
+
+
+
+
+
+
+/* ====================  Form ================== */
+
+#form-section{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-width: 90vw;
+}
+
+.form-text{
+  padding-left: 40px;
+  margin-bottom: 10px;
+}
+
+
+#form{
+  position: relative;
+  left: 50%;
+  translate: -50%;
+  width:clamp(70vw,8vw, 400px);
+  box-shadow: 0px 0px 10px;
+  border-radius: 5px;
+  padding: 10px 0px ;
+}
+
+#form form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 
+#form input{
+  width: 90%;
+  height: 40px;
+  outline: none;
+  font-size:1.5rem;
+  font-weight: 500;
+  padding-left: 10px;
+  background-color: rgba(255, 255, 255, 0.237);
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+#form .labelling{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#form button{
+  width: 90%;
+  height: 40px;
+  outline: none;
+  font-size:1.5rem;
+  font-weight: 900;
+  text-shadow: 0px 0px 10px white;
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: rgb(255, 93, 120);
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+#form button:active{
+  transform: scale(0.95);
+}
 
 
 
@@ -170,7 +331,24 @@ main{
     min-height: 100vh;
   }
   
+}
+
+@media (max-width: 768px) {
+  .img-cards{
+    grid-template-columns: repeat(2,1fr);
+  }
   
 }
+
+@media (max-width: 480px) {
+  .img-cards{
+    grid-template-columns: repeat(1,1fr);
+  }
+}
+
+
+
+
+
 
 
