@@ -9,9 +9,8 @@ const ImageStructure = new mongoose.Schema({
     fileType:{
         type: String,
         required: true,
-        unique:true
     }
 });
 
-const Image = mongoose.model('File',ImageStructure);
+const Image = mongoose.model('Images',ImageStructure);
 export default Image;

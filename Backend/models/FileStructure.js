@@ -10,13 +10,8 @@ const FileStructure = new mongoose.Schema({
         type: String,
         required: true,
         unique:true
-    },
-    fileLogo:{
-        type: String,
-        required: true,
-        unique:true
     }
 });
 
-const File = mongoose.model('File',FileStructure);
+const File = mongoose.model('Files',FileStructure);
 export default File;

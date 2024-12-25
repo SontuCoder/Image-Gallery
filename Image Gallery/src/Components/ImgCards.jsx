@@ -8,7 +8,10 @@ const ImgCards = ({fileName, fileType, fileLogo}) => {
             <img src={fileLogo} alt="logo" />
             <h3>{fileName}</h3>
             </div>
-            <i class="fa-solid fa-trash"></i>
+            <div className="card-icon">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <i class="fa-solid fa-trash dustbin"></i>
+            </div>
         </div>
     )
 }
