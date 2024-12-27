@@ -1,10 +1,39 @@
 import React from 'react';
 import ImgCards from '../Components/ImgCards';
 import { Button2 } from '../Components/Button';
-import logo from "../assets/pexels-photo-4576085.jpeg";
+import logo1 from "../assets/pexels-photo-4576085.jpeg";
+
+
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 const ImageCollection = () => {
+
+    const [files, setFiles] = useState([]);
+
+    useEffect(() => {
+        const fetchFiles = async () => {
+            const ports = [3030, 5005];
+            for (const port of ports) {
+                try {
+                    const response = await axios.get(`http://localhost:${port}/api/file`);
+                    if (response.data.success) {
+                        setFiles(response.data.files);
+                        break;
+                    }
+                } catch (error) {
+                    console.error(`Error fetching from port ${port}:`, error);
+                    continue;
+                }
+            }
+        };
+
+        fetchFiles();
+    }, []);
+
+
+
     return (
         <div className='collection' id='collection'>
             <div className="container">
@@ -13,13 +42,9 @@ const ImageCollection = () => {
                     <Button2 link={"#home"} />
                 </div>
                 <div className="img-cards">
-                    <ImgCards fileName="Hello" fileType="Hi" fileLogo={logo} />
-                    <ImgCards fileName="Hello" fileType="Hi" fileLogo={logo} />
-                    <ImgCards fileName="Hello" fileType="Hi" fileLogo={logo} />
-                    <ImgCards fileName="Hello" fileType="Hi" fileLogo={logo} />
-                    <ImgCards fileName="Hello" fileType="Hi" fileLogo={logo} />
-                    <ImgCards fileName="Hello" fileType="Hi" fileLogo={logo} />
-                    <ImgCards fileName="Hello" fileType="Hi" fileLogo={logo} />
+                    {files.map((file, index) => (
+                        <ImgCards key={index} fileName={file.fileName} fileType={file.fileType} fileLogo={logo1} />
+                    ))}
                 </div>
 
             </div>

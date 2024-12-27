@@ -21,7 +21,7 @@ const Button2 = ({ link}) => {
     return (
         <div className="button2">
             <a href={link}>
-            <i class="fa-solid fa-pen-to-square"></i>
+            <i className="fa-solid fa-pen-to-square"></i>
             </a>
         </div>
     )

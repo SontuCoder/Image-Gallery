@@ -14,12 +14,7 @@ Backend Process
     Accept the uploaded image via a POST request.
     Save it temporarily in memory or disk for processing.
 
-    2.Enhance the Image:
-
-    Use an enhancement model like Real-ESRGAN or a third-party API to process the image.
-    Convert the enhanced image into a format suitable for saving (e.g., Base64 or binary).
-
-    3.Save to Database:
+    2.Save to Database:
 
     Choose a database to store the image:
     MongoDB: Store as Base64 or use GridFS for large files.

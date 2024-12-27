@@ -1,21 +1,29 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./Components/Header";
-import Form from "./Pages/Form";
 import Home from "./Pages/Home";
 import ImageCollection from "./Pages/ImageCollection";
-
-
+import Form from "./Pages/Form.jsx";
+import ImgPage from "./Components/ImgPage";
 
 function App() {
   return (
-    <>
-      <Header/>
-      <main id="main">
-        <Home/>
-        <ImageCollection/>
-        <Form/>
-      </main>
-    </>
-  )
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <main id="main">
+              <Home />
+              <ImageCollection />
+              <Form />
+            </main>
+          }
+        />
+        <Route path="/ImgPage" element={<ImgPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
