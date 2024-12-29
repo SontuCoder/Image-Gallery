@@ -17,18 +17,12 @@ Button1.propTypes = {
 
 // Button 2
 
-const Button2 = ({ link}) => {
+const Button2 = ({handleClick}) => {
     return (
-        <div className="button2">
-            <a href={link}>
+        <button className="button2" onClick={handleClick}>
             <i className="fa-solid fa-pen-to-square"></i>
-            </a>
-        </div>
+        </button>
     )
-}
-
-Button2.propTypes = {
-    link: PropTypes.string.isRequired
 }
 
 

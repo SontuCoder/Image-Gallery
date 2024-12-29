@@ -7,7 +7,6 @@ const ImgCards = ({ fileName, fileType, fileLogo }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        // Encode parameters to ensure they are URL-safe
         const queryParams = new URLSearchParams({
             fileType,
             fileName,
@@ -17,6 +16,8 @@ const ImgCards = ({ fileName, fileType, fileLogo }) => {
         navigate(`/ImgPage?${queryParams}`);
     };
 
+    
+
 
     return (
             <div className="cards" onClick={handleClick}>
@@ -25,7 +26,6 @@ const ImgCards = ({ fileName, fileType, fileLogo }) => {
                     <h3>{fileName}</h3>
                 </div>
                 <div className="card-icon">
-                    <i className="fa-solid fa-pen-to-square"></i>
                     <i className="fa-solid fa-trash dustbin"></i>
                 </div>
             </div>

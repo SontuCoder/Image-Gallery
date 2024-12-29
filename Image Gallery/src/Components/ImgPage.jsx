@@ -1,27 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import logo from '../assets/pexels-photo-4576085.jpeg';
-
-import pic1 from '../assets/ExampleImg/IMG-20240908-WA0020.jpg';
-import pic2 from '../assets/ExampleImg/IMG-20240908-WA0021.jpg';
-import pic3 from '../assets/ExampleImg/IMG-20240908-WA0022.jpg';
-import pic4 from '../assets/ExampleImg/IMG-20240908-WA0023.jpg';
-import pic5 from '../assets/ExampleImg/IMG-20240908-WA0024.jpg';
-import pic6 from '../assets/ExampleImg/IMG-20240908-WA0025.jpg';
-import pic7 from '../assets/ExampleImg/IMG-20240908-WA0026.jpg';
-import pic8 from '../assets/ExampleImg/IMG-20240908-WA0027.jpg';
-import pic9 from '../assets/ExampleImg/IMG-20240908-WA0028.jpg';
-import pic10 from '../assets/ExampleImg/IMG-20240908-WA0029.jpg';
-import pic11 from '../assets/ExampleImg/IMG-20240908-WA0030.jpg';
-import pic12 from '../assets/ExampleImg/IMG-20240908-WA0031.jpg';
-import pic13 from '../assets/ExampleImg/IMG-20240908-WA0032.jpg';
-import pic14 from '../assets/ExampleImg/Screenshot 2024-09-08 193214.png';
-import pic15 from '../assets/ExampleImg/Screenshot 2024-09-12 115206.png';
-import pic16 from '../assets/ExampleImg/Screenshot 2024-10-03 185758.png';
-import pic17 from '../assets/ExampleImg/Screenshot 2024-10-23 112920.png';
-import pic18 from '../assets/ExampleImg/Screenshot 2024-12-03 172956.png';
 import Img from './Img';
-
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const ImgPage = () => {
     const location = useLocation();
@@ -32,33 +13,144 @@ const ImgPage = () => {
 
     // Example usage of queryParamsObj
     const { fileType, fileName, fileLogo } = queryParamsObj;
-    
+
+    // pic upload modal 
+    const [uploadModal, setUploadModal] = useState(false);
+
+    const upload = () => {
+        setUploadModal(!uploadModal);
+    }
+
+    // Pic uploads
+    const [files, setFiles] = useState([]);
+
+    const handleFileChange = (event)=>{
+        let fileOfFiles = [];
+        for(let img of event.target.files){
+            fileOfFiles.push(img);
+        }
+        setFiles(fileOfFiles);
+    }
+
+    const uploadImg = async(event)=>{
+        event.preventDefault();
+
+        if(files.length === 0){
+            toast.error("Select Images first.",{
+                position: "top-center"
+            });
+            return;
+        };
+
+        const config = {
+            headers:{
+                "Content-Type" : "multipart/form-data"
+            }
+        }
+
+        const formData = new FormData();
+        formData.append("fileType",fileType);
+
+        for(let filesdata of files){
+            formData.append("userimg",filesdata);
+        }
+        
+        await axios.post(`http://localhost:3030/api/img`, formData, config)
+        .then(res=>{
+            if(res.data.success){
+                toast.success(res.data.message,{
+                    position:"top-center"
+                });
+                setUploadModal(false);
+                handleGetPic();
+            } else {
+                toast.error(res.data.message,{
+                    position:"top-center"
+                });
+                setUploadModal(false);
+            }
+        })
+        .catch(err=>{
+            toast.error("Some error occurs! Plz try again leter",{
+                position:"top-center"
+            });
+            setUploadModal(false);
+        });
+    }
+
+    const cancel = () => {
+        setUploadModal(false);
+    }
+
+    const [picFiles, setPicFiles] = useState([]);
+
+    const handleGetPic = async()=>{
+        await axios.get(`http://localhost:3030/api/img?fileType=${fileType}`)
+        .then(res=>{
+            if(res.data.success){
+                setPicFiles(res.data.img); 
+            } else {
+                toast.error(res.data.error,{
+                    position:"top-center"
+                });
+            }
+        }).catch(err=>{
+            toast.error("Some error occurs! Plz try again leter",{
+                position:"top-center"
+            });
+        });
+    }
+
+    useEffect(()=>{
+        handleGetPic()
+    },[fileType]);
 
 
-
-
-    
-    let pic  = [pic1, pic2, pic3, pic4, pic5, pic6, pic7, pic8, pic9, pic10, pic11, pic12, pic13, pic14, pic15, pic16, pic17, pic18];
+    const refreshImages = () => {
+        handleGetPic();
+    };
 
     return (
         <div className="image-page">
             <div className="profile">
-
                 <div className="imgPage-details">
                     <div className='page-logo'>
-                        <img src={logo} alt={logo} />
+                        <img src={fileLogo} alt={fileLogo} />
                     </div>
                     <div className="img-text">
-                    <h3 className="filename">{fileName}</h3>
-                    <p className="filetype">{fileType}</p>
+                        <h3 className="filename">{fileName}</h3>
+                        <p className="filetype">{fileType}</p>
                     </div>
                 </div>
+
+                <button className='upload' onClick={upload}>
+                    <i className="fa-solid fa-upload"></i>
+                </button>
+
             </div>
+
+            {uploadModal && (
+                <>
+                    <div className="modal-overlay" onClick={cancel}></div>
+                    <div className={`uploadModal ${uploadModal ? "open" : ""}`} onClick={(e) => e.stopPropagation()}>
+
+                    <h1 id='uploadHeading'>Upload Your Images</h1>
+                        <form >
+                            <input type="file" name="pic" id="pic" onChange={handleFileChange} multiple={true} />
+                            <button type="submit" id='submit' className='buttonUpload' onClick={uploadImg}>Upload</button>
+
+                        </form>
+
+                        <button id='cancel' className='buttonUpload' onClick={()=>cancel()}> Cancel</button>
+                    </div>
+                </>
+            )}
+
             <div className="img-display">
                 {
-                    pic.map((img, index) => (
-                            <Img key={index} fileName={img} />
-                ))
+                    picFiles.length>0 && (picFiles.map((img,index) => (
+                        <Img key={index} fileName={`http://localhost:3030/uploads/${img.fileName.split('\\').pop()}`} refreshImages={refreshImages}/>
+                    )))
                 }
             </div>
         </div>

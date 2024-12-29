@@ -1,4 +1,7 @@
-import ImgSchema from '../Models/Image.js';
+import ImgSchema from '../models/Image.js';
+import fs from 'fs';
+import path from 'path';
+
 
 export const getImg = async (req, res) => {
     const fileType = req.query.fileType;
@@ -40,3 +43,32 @@ export const postImg = async (req, res) => {
         }
     }
 };
+
+export const deleteImg = async(req,res)=>{
+    try{
+        const {fileName} = req.query;
+        let file = "imageUploads\\" + fileName;
+        const isExist = await ImgSchema.findOne({fileName:file});
+        if(!isExist){
+            return res.status(404).send({ success: false, message: 'Img not found' });
+        }
+
+        const filePath = path.join(process.cwd(), 'imageUploads', fileName);
+        // Delete file using promisified fs.unlink
+        await fs.promises.unlink(filePath);
+
+            // Delete the file reference from the database
+
+
+        const deletedImg = await ImgSchema.findByIdAndDelete(isExist._id);
+        if (!deletedImg) {
+            return res.status(404).send({ success: false, message: 'Failed to delete file reference from database' });
+        }
+
+        res.status(200).send({ success: true, message: 'File deleted successfully' });
+
+    } catch (error) {
+        res.status(500).send({ success: false, message: 'Internal server error',
+        });
+    }
+}

@@ -12,6 +12,7 @@ export const getFiles = async (req, res) => {
 export const postFiles = async (req, res) => {
     const filelogo = req.file.filename;
     const { fileName, fileType} = req.body;
+    console.log(fileName, fileType, filelogo);
     if(!fileName || !fileType || !filelogo){
         return res.status(400).send({success: false, message: 'Please provide all the required fields'});
     } else {
@@ -27,8 +28,11 @@ export const postFiles = async (req, res) => {
 
             res.status(201).send({success: true, message: 'File created successfully'});
         } catch (error) {
-            console.error('Error in postFiles:', error);
             res.status(400).send({success: false, message: 'File creation failed'});
         }
     }
 };
+
+export const deleteFiles = async (req,res)=>{
+    console.log("delete folder");
+}

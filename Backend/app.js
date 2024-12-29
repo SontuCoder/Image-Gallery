@@ -18,6 +18,8 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/uploads', express.static('./imageUploads'));
+app.use('/logouploads', express.static('./fileLogo'));
+
 
 app.use('/api', Router);
 
